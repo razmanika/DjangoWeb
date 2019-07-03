@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block content  %}
+    {% if homeposts %}
+    <ul>
+    {% for post in homeposts %} <!-- შევედით ბაზაში კონკრეტულად პოსტების მოდელში -->
+        <li>
+            <h1><a href="{% url 'blog:detail' post.id %}"> {{ post.title }} </a></h1> <!--post.id_ს აწვდის URLpattern_ში ცვლად pk_ას-->
+        </li>
+        <p>By {{ post.author }} on {{ post.publish_time|date:"F d, Y f A" }}</p>
+
+        <p>{{post.content|slice:'50'}}...</p>
+    {% endfor %}
+    </ul>
+    {% else %}
+        <p></b> Sorry There is no any Posts </b></p>
+    {% endif %}
+{% endblock content %}

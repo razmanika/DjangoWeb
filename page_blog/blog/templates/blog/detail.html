@@ -1,0 +1,25 @@
+{% extends "blog/base.html" %}
+{% block content %}
+    <article class="media content-section">
+        <div class="media-body">
+            <div class="article-metadata">
+                <a class="mr-2" href="#">{{ posts.author }}</a>
+                <small class="text-muted">{{ posts.publish_time|date:"F d, Y f A" }}</small>
+            </div>
+            <h2><a class="article-title"><h1>{{ posts.title }}</h1></a></h2>
+            <p class="article-content">{{ posts.content }}</p>
+        </div>
+    </article>  
+    {% for comment in comments %}
+        <p>By {{ comment.comm_author }} on {{ comment.publish_time }}</p>
+        <p>{{ comment.content }}</p>
+    {% endfor %}
+
+    {% for other_post in other_posts %}
+        {{other_post}}
+    {% endfor %}
+    <div>
+        
+    </div>
+   
+{% endblock content %}
